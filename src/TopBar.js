@@ -18,6 +18,24 @@ const Topbar = () => {
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
 
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
   
 
   return (
@@ -26,7 +44,7 @@ const Topbar = () => {
         {true && (
           <IconButton
             sx={{ margin: "0 6 0 2" }}
-            // onClick={() => toggleSidebar()}
+            onClick={toggleDrawer("left", true)}
           >
             <MenuOutlinedIcon />
           </IconButton>
@@ -43,6 +61,9 @@ const Topbar = () => {
           </IconButton>
         </Box>
       </Box>
+
+      <SideBar state={state} toggleDrawer={toggleDrawer}/>
+      
       <Box display="flex">
         <IconButton onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? (
@@ -70,7 +91,6 @@ const Topbar = () => {
           </IconButton>
         )} */}
       </Box>
-      <SideBar />
     </Box>
   );
 };
