@@ -1,56 +1,102 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import React, { useState } from "react";
+import {
+  Box,
+  useTheme,
+  SwipeableDrawer,
+  List,
+  Divider,
+  Typography,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+} from "@mui/material";
 
-export default function SwipeableTemporaryDrawer({state, toggleDrawer}) {
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 
+
+
+import { tokens } from "./theme";
+import { Link } from "react-router-dom";
+
+const Item = ({ text, to, icon, selected, setSelected }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+  return (
+    <ListItem 
+      sx={{
+        // selected and (selected + hover) states
+        "&& .Mui-selected, && .Mui-selected:hover": {
+          bgcolor: "transparent",
+          "&, & .MuiListItemIcon-root": {
+            color: `${colors.greenAccent[500]}`,
+          },
+        },
+        // hover states
+        "& .MuiListItemButton-root:hover": {
+          bgcolor: "transparent",
+          "&, & .MuiListItemIcon-root": {
+            color: `${colors.blueAccent[500]}`,
+          },
+        },
+      }}
+      style={{ color: colors.grey[100] }}
+      onClick={() => setSelected(text)}
+      component={Link}
+      to={`/${to}`}
+    >
+      <ListItemButton selected={selected === text ? true : false}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <Typography>{text}</Typography>
+      </ListItemButton>
+    </ListItem>
+  );
+};
+
+export default function SwipeableTemporaryDrawer({ state, toggleDrawer }) {
+  const [selected, setSelected] = useState("DashBoard");
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <Item
+          key={"Dashboard"}
+          selected={selected}
+          setSelected={setSelected}
+          icon={<BarChartOutlinedIcon />}
+          text={"Dashboard"}
+          to={""}
+        />
+        <Item
+          key={"Evaluations"}
+          selected={selected}
+          setSelected={setSelected}
+          icon={<ReceiptOutlinedIcon />}
+          text={"Evaluaciones"}
+          to={"Evaluations"}
+        />
+        <Item
+          key={"Groups"}
+          selected={selected}
+          setSelected={setSelected}
+          icon={<PeopleOutlinedIcon />}
+          text={"Grupos"}
+          to={"Groups"}
+        />
       </List>
     </Box>
   );
 
   return (
     <div>
-      {['left'].map((anchor) => (
+      {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
           <SwipeableDrawer
             anchor={anchor}
