@@ -56,7 +56,7 @@ const Item = ({ text, to, icon, selected, setSelected }) => {
 };
 
 export default function SwipeableTemporaryDrawer({ state, toggleDrawer }) {
-  const [selected, setSelected] = useState("DashBoard");
+  const [selected, setSelected] = useState("Dashboard");
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}

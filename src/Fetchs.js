@@ -28,6 +28,32 @@ export function fetchEvaluations() {
     });
 }
 
+export function fetchActiveEvaluations() {
+    return new Promise((resolve, reject) => {
+      fetch(`${API_URL}/evaluations/active`, {
+        method: "GET",
+        headers: {
+          // 'Authorization': `Bearer ${localStorage.getItem('token_access')}`,
+          // 'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch active evaluation');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Active evaluations: ", data);
+          resolve(data);
+        })
+        .catch((error) => {
+          console.log("Active evaluations Error: ", error);
+          reject(error);
+        });
+    });
+}
+
 export function fetchGroup(groupId){
     return new Promise((resolve, reject) => {
         fetch(`${API_URL}/groups/${groupId}`, {

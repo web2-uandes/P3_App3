@@ -1,14 +1,13 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import ProgressCircle from "./ProgressCircle";
 import { tokens } from "../theme";
 
-export default function DashBoardItem({ title, subtitle, progress, icon }) {
+export default function DashBoardItem({ title, subtitle, icon }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box bgcolor={colors.primary[400]} width="100%" m="0 30px" p="20px">
+    <Box bgcolor={colors.primary[400]} m="0 30px" p="20px">
       <Box display="flex" justifyContent="space-between">
         <Box>
           {icon}
@@ -19,9 +18,6 @@ export default function DashBoardItem({ title, subtitle, progress, icon }) {
           >
             {title}
           </Typography>
-        </Box>
-        <Box pt="15px">
-          <ProgressCircle progress={progress} />
         </Box>
       </Box>
       <Box display="flex" justifyContent="space-between" mt="2px">
