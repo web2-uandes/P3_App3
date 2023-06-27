@@ -21,7 +21,7 @@ export default function DashBoardItem({ title, subtitle, icon }) {
         </Box>
       </Box>
       <Box display="flex" justifyContent="space-between" mt="2px">
-        <Typography variant="h5" sx={{ color: colors.greenAccent[500] }}>
+        <Typography variant="h5" sx={{ color: colors.greenAccent[400] }}>
           {subtitle}
         </Typography>
       </Box>

@@ -31,14 +31,14 @@ const Item = ({ text, to, icon, selected, setSelected }) => {
         "&& .Mui-selected, && .Mui-selected:hover": {
           bgcolor: "transparent",
           "&, & .MuiListItemIcon-root": {
-            color: `${colors.greenAccent[500]}`,
+            color: `${colors.greenAccent[400]}`,
           },
         },
         // hover states
         "& .MuiListItemButton-root:hover": {
           bgcolor: "transparent",
           "&, & .MuiListItemIcon-root": {
-            color: `${colors.blueAccent[500]}`,
+            color: `${colors.blueAccent[400]}`,
           },
         },
       }}

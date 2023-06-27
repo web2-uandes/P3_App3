@@ -38,12 +38,12 @@ export default function Dashboard() {
           subtitle="Total Evaluations"
           icon={
             <QuizIcon
-              sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              sx={{ color: colors.greenAccent[400], fontSize: "26px" }}
             />
           }
         />
         <DashBoardItem title={activeEvalAmount} subtitle="Active Evaluations"
-        icon={<TimelapseIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }}/>}/>
+        icon={<TimelapseIcon sx={{ color: colors.greenAccent[400], fontSize: "26px" }}/>}/>
       </ListItem>
     </div>
   );

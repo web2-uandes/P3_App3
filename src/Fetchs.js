@@ -54,9 +54,9 @@ export function fetchActiveEvaluations() {
     });
 }
 
-export function fetchGroup(groupId){
+export function fetchGroups(){
     return new Promise((resolve, reject) => {
-        fetch(`${API_URL}/groups/${groupId}`, {
+        fetch(`${API_URL}/groups`, {
             method: "GET",
             headers: {
             // 'Authorization': `Bearer ${localStorage.getItem('token_access')}`,
@@ -65,12 +65,12 @@ export function fetchGroup(groupId){
         })
         .then((response) => {
             if (!response.ok) {
-              throw new Error('Failed to fetch group.');
+              throw new Error('Failed to fetch groups.');
             }
             return response.json();
           })
           .then((data) => {
-            console.log("Group: ", data);
+            console.log("Groups: ", data);
             resolve(data);
           })
           .catch((error) => {
