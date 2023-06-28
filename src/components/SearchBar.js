@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { tokens } from "../theme";
+import { Height } from "@mui/icons-material";
 
 export default function SearchBar({ options }) {
   const theme = useTheme();
@@ -45,6 +46,10 @@ export default function SearchBar({ options }) {
       borderRadius={1}
     >
       <Autocomplete
+        sx={{"&& .MuiInputBase-root":{
+            padding: 0.1,
+            paddingLeft: 0.5
+        }}}
         value={searchValue}
         onChange={(event, value) => setSearchValue(value)}
         inputValue={searchValue}
