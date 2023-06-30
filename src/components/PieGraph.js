@@ -25,6 +25,8 @@ export default function PieGraph({ data }) {
     Empezadas: colors.redAccent[400],
   };
 
+  const EmptyTooltip = () => null;
+
   return (
     <>
       <div style={{ height: "300px" }}>
@@ -38,6 +40,7 @@ export default function PieGraph({ data }) {
             textColor: colors.primary[200],
           }}
           colors={({ id }) => colorScheme[id]}
+          tooltip={EmptyTooltip}
         />
       </div>
     </>
