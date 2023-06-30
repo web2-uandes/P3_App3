@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Evaluations from "./pages/Evaluations";
 import Groups from "./pages/Groups";
 import Dashboard from "./pages/Dashboard";
+import ActiveEvaluations from "./pages/ActiveEvaluations";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -19,11 +20,21 @@ function App() {
           <CssBaseline />
           <div style={{ height: "100%", width: "100%" }}>
             <main>
-              <Topbar groups={groups} setSelectedGroup={setSelectedGroup}/>
+              <Topbar groups={groups} setSelectedGroup={setSelectedGroup} />
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/Evaluations" element={<Evaluations />} />
-                <Route path="/Groups" element={<Groups groups={groups} setGroups={setGroups} selectedGroup={selectedGroup}/>} />
+                <Route path="/Actives" element={<ActiveEvaluations />} />
+                <Route
+                  path="/Groups"
+                  element={
+                    <Groups
+                      groups={groups}
+                      setGroups={setGroups}
+                      selectedGroup={selectedGroup}
+                    />
+                  }
+                />
               </Routes>
             </main>
           </div>

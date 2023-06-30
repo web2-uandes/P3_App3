@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material";
 import { tokens } from "../theme";
 import Header from "./Header";
 
-export default function BarGraph({ title, data, xLabel }) {
+export default function BarGraph({ title, data, xLabel, yLabel }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -64,7 +64,7 @@ export default function BarGraph({ title, data, xLabel }) {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Evaluaciones",
+            legend: yLabel,
             legendPosition: "middle",
             legendOffset: -40,
             format: yAxisFormat,

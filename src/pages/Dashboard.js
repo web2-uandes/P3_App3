@@ -5,6 +5,7 @@ import { tokens } from "../theme";
 import {
   fetchActiveEvaluations,
   fetchDailyEvaluations,
+  fetchDoneVsStarted,
   fetchEvaluations,
   fetchMonthlyEvaluations,
 } from "../Fetchs";
@@ -13,6 +14,7 @@ import QuizIcon from "@mui/icons-material/Quiz";
 import TimelapseIcon from "@mui/icons-material/Timelapse";
 import BarGraph from "../components/BarGraph";
 import Header from "../components/Header";
+import PieGraph from "../components/PieGraph";
 
 export default function Dashboard() {
   // const [evaluations, setEvaluations] = useState(null);
@@ -20,6 +22,7 @@ export default function Dashboard() {
   const [activeEvalAmount, setActiveEvalAmount] = useState(0);
   const [monthly, setMonthly] = useState(null);
   const [daily, setDaily] = useState(null);
+  const [completed, setCompleted] = useState(null);
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -31,12 +34,14 @@ export default function Dashboard() {
         const actives = await fetchActiveEvaluations();
         const month = await fetchMonthlyEvaluations();
         const day = await fetchDailyEvaluations();
+        const done = await fetchDoneVsStarted();
 
         //   setEvaluations(evals);
         setEvalAmount(evals);
         setActiveEvalAmount(actives.length);
         setMonthly(month);
         setDaily(day);
+        setCompleted(done);
       } catch (error) {
         console.log("Error fetching evaluation:", error);
       }
@@ -68,8 +73,23 @@ export default function Dashboard() {
           }
         />
       </ListItem>
-      <BarGraph title={"Evaluaciones por mes"} data={monthly} xLabel={"Mes"} />
-      <BarGraph title={"Evaluaciones por dia"} data={daily} xLabel={"Dia"} />
+      <BarGraph
+        title={"Evaluaciones por mes"}
+        data={monthly}
+        xLabel={"Mes"}
+        yLabel={"Evaluaciones"}
+      />
+      <BarGraph
+        title={"Preguntas respondidas por dia"}
+        data={daily}
+        xLabel={"Dia"}
+        yLabel={"Preguntas"}
+      />
+      <Header
+        title={"Evaluaciones Activas"}
+        subtitle={"Completadas v/s Empezadas"}
+      />
+      <PieGraph data={completed} />
     </div>
   );
 }

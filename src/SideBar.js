@@ -58,7 +58,7 @@ export default function SwipeableTemporaryDrawer({ state, toggleDrawer }) {
   const [selected, setSelected] = useState("Dashboard");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  
+
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
@@ -76,8 +76,10 @@ export default function SwipeableTemporaryDrawer({ state, toggleDrawer }) {
           text={"Dashboard"}
           to={""}
         />
-        <Divider/>
-        <ListItemText sx={{color:colors.grey[300], p:"10px"}}>Evaluaciones</ListItemText>
+        <Divider />
+        <ListItemText sx={{ color: colors.grey[300], p: "10px" }}>
+          Evaluaciones
+        </ListItemText>
         <Item
           key={"Evaluations"}
           selected={selected}
@@ -86,7 +88,15 @@ export default function SwipeableTemporaryDrawer({ state, toggleDrawer }) {
           text={"Historicas"}
           to={"Evaluations"}
         />
-        <Divider/>
+        <Item
+          key={"ActiveEvaluations"}
+          selected={selected}
+          setSelected={setSelected}
+          icon={<ReceiptOutlinedIcon />}
+          text={"Activas"}
+          to={"Actives"}
+        />
+        <Divider />
         <Item
           key={"Groups"}
           selected={selected}

@@ -167,8 +167,12 @@ export function fetchActivesPercentage() {
 }
 
 export function fetchDoneVsStarted() {
+  const params = new URLSearchParams({
+    number_result: true,
+    option: "completed",
+  });
   return new Promise((resolve, reject) => {
-    fetch(`${API_URL}`, {
+    fetch(`${API_URL}/evaluations/?${params}`, {
       method: "GET",
       headers: {
         // 'Authorization': `Bearer ${localStorage.getItem('token_access')}`,
