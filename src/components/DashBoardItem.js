@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme, Button } from "@mui/material";
 import { tokens } from "../theme";
 
 export default function DashBoardItem({ title, subtitle, icon }) {
@@ -7,7 +7,7 @@ export default function DashBoardItem({ title, subtitle, icon }) {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box bgcolor={colors.primary[400]} m="0 30px" p="20px">
+    <Box bgcolor={colors.primary[400]} m="0 30px" p="20px" width="50%">
       <Box display="flex" justifyContent="space-between">
         <Box>
           {icon}
@@ -19,9 +19,15 @@ export default function DashBoardItem({ title, subtitle, icon }) {
             {title}
           </Typography>
         </Box>
+        <Button
+          sx={{ backgroundColor: colors.blueAccent[700] }}
+          variant="contained"
+        >
+          <Typography sx={{ color: colors.grey[100] }}>Enter</Typography>
+        </Button>
       </Box>
       <Box display="flex" justifyContent="space-between" mt="2px">
-        <Typography variant="h5" sx={{ color: colors.greenAccent[400] }}>
+        <Typography variant="h5" sx={{ color: colors.blueAccent[500] }}>
           {subtitle}
         </Typography>
       </Box>

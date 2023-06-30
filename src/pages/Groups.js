@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { fetchGroups } from "../Fetchs";
 
-export default function Groups({ groups, setGroups }) {
+export default function Groups({ groups, setGroups, selectedGroup }) {
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const gs = await fetchGroups();
         //   setEvaluations(evals);
-        console.log('Gs: ',gs);
         setGroups(gs);
       } catch (error) {
         console.log("Error fetching groups:", error);
@@ -18,5 +17,5 @@ export default function Groups({ groups, setGroups }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
-  return <div>{groups.name}</div>;
+  return <div>{selectedGroup}</div>;
 }

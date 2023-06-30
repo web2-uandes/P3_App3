@@ -8,9 +8,8 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { tokens } from "../theme";
-import { Height } from "@mui/icons-material";
 
-export default function SearchBar({ options }) {
+export default function SearchBar({ options, setSelected }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -22,7 +21,7 @@ export default function SearchBar({ options }) {
   };
 
   const handleSearch = () => {
-    console.log(searchValue);
+    setSelected(searchValue);
   };
 
   const filterOptions = (options, { inputValue }) => {
@@ -48,7 +47,8 @@ export default function SearchBar({ options }) {
       <Autocomplete
         sx={{"&& .MuiInputBase-root":{
             padding: 0.1,
-            paddingLeft: 0.5
+            paddingTop: 0.2,
+            paddingLeft: 0.5,
         }}}
         value={searchValue}
         onChange={(event, value) => setSearchValue(value)}

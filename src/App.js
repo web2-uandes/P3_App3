@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 function App() {
   const [theme, colorMode] = useMode();
   const [groups, setGroups] = useState([]);
+  const [selectedGroup, setSelectedGroup] = useState("");
 
   return (
     <div className="app">
@@ -18,11 +19,11 @@ function App() {
           <CssBaseline />
           <div style={{ height: "100%", width: "100%" }}>
             <main>
-              <Topbar groups={groups} setGroups={setGroups}/>
+              <Topbar groups={groups} setSelectedGroup={setSelectedGroup}/>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/Evaluations" element={<Evaluations />} />
-                <Route path="/Groups" element={<Groups groups={groups} setGroups={setGroups}/>} />
+                <Route path="/Groups" element={<Groups groups={groups} setGroups={setGroups} selectedGroup={selectedGroup}/>} />
               </Routes>
             </main>
           </div>

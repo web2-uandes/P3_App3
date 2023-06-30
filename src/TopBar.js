@@ -14,19 +14,24 @@ import { matchPath } from "react-router";
 import SearchBar from "./components/SearchBar";
 import SideBar from "./SideBar";
 
-const Topbar = ({ groups, setGroups }) => {
+const Topbar = ({ groups, setSelectedGroup }) => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   const [options, setOptions] = useState([]);
+  
 
   const location = useLocation();
   const groupRoute = matchPath(location.pathname, "/Groups");
 
   useEffect(() => {
-    console.log("groups:", groups);
-    const groupNames = groups.map((group) => group.name);
-    console.log("groupNames:", groupNames);
-    setOptions(groupNames);
+    if(groupRoute){
+        console.log("groups:", groups);
+        const groupNames = groups.map((group) => group.name);
+        console.log("groupNames:", groupNames);
+        setOptions(groupNames);
+    }
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groups]);
 
   const [state, setState] = React.useState({
@@ -60,7 +65,7 @@ const Topbar = ({ groups, setGroups }) => {
           </IconButton>
         )}
 
-        {groupRoute && <SearchBar options={options} />}
+        {groupRoute && <SearchBar options={options} setSelected={setSelectedGroup}/>}
         
       </Box>
 
@@ -83,14 +88,6 @@ const Topbar = ({ groups, setGroups }) => {
         <IconButton>
           <PersonOutlinedIcon />
         </IconButton>
-        {/* {broken && rtl && (
-          <IconButton
-            sx={{ margin: "0 6 0 2" }}
-            onClick={() => toggleSidebar()}
-          >
-            <MenuOutlinedIcon />
-          </IconButton>
-        )} */}
       </Box>
     </Box>
   );

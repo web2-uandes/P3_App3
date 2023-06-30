@@ -9,13 +9,12 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-
-
 
 import { tokens } from "./theme";
 import { Link } from "react-router-dom";
@@ -25,7 +24,7 @@ const Item = ({ text, to, icon, selected, setSelected }) => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <ListItem 
+    <ListItem
       sx={{
         // selected and (selected + hover) states
         "&& .Mui-selected, && .Mui-selected:hover": {
@@ -57,6 +56,9 @@ const Item = ({ text, to, icon, selected, setSelected }) => {
 
 export default function SwipeableTemporaryDrawer({ state, toggleDrawer }) {
   const [selected, setSelected] = useState("Dashboard");
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
@@ -74,14 +76,17 @@ export default function SwipeableTemporaryDrawer({ state, toggleDrawer }) {
           text={"Dashboard"}
           to={""}
         />
+        <Divider/>
+        <ListItemText sx={{color:colors.grey[300], p:"10px"}}>Evaluaciones</ListItemText>
         <Item
           key={"Evaluations"}
           selected={selected}
           setSelected={setSelected}
           icon={<ReceiptOutlinedIcon />}
-          text={"Evaluaciones"}
+          text={"Historicas"}
           to={"Evaluations"}
         />
+        <Divider/>
         <Item
           key={"Groups"}
           selected={selected}
