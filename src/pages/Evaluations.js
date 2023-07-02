@@ -66,18 +66,26 @@ export default function Evaluations({ selectedEvaluation }) {
 
   return (
     <div style={{ display: "flex", justifyContent: "space-around" }}>
-      <div style={{ display: "inline-block", width: 300 }}>
-        <Header subtitle={"Participación"} />
-        <PieGraph data={participation} />
-      </div>
-      <div style={{ display: "inline-block", width: 300 }}>
-        <Header subtitle={"Resultados"} />
-        <ResultsBarChart
-          xLabel={"N° Pregunta"}
-          data={results["questions"]}
-          yLabel={"Cantidad"}
-        />
-      </div>
+      {evaluationId !== "" && (
+        <>
+          {participation && (
+            <div style={{ display: "inline-block", width: 300 }}>
+              <Header subtitle={"Participación"} />
+              <PieGraph data={participation} />
+            </div>
+          )}
+          {results && (
+            <div style={{ display: "inline-block", width: 300 }}>
+              <Header subtitle={"Resultados"} />
+              <ResultsBarChart
+                xLabel={"N° Pregunta"}
+                data={results["questions"]}
+                yLabel={"Cantidad"}
+              />
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }

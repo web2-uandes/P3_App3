@@ -89,6 +89,7 @@ export async function fetchEvaluationParticipation(evaluationId) {
 export async function fetchEvaluationResults(evaluationId) {
   const params = new URLSearchParams({
     option: "results",
+    sort: "worst",
   });
   return new Promise((resolve, reject) => {
     fetch(`${API_URL}/evaluations/${evaluationId}/?${params}`, {

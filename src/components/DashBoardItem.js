@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, useTheme, Button } from "@mui/material";
 import { tokens } from "../theme";
 
-export default function DashBoardItem({ title, subtitle, icon }) {
+export default function DashBoardItem({ title, subtitle, icon, to }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -22,6 +22,7 @@ export default function DashBoardItem({ title, subtitle, icon }) {
         <Button
           sx={{ backgroundColor: colors.blueAccent[700] }}
           variant="contained"
+          href={to}
         >
           <Typography sx={{ color: colors.grey[100] }}>Enter</Typography>
         </Button>

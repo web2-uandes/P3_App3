@@ -57,6 +57,7 @@ export default function Dashboard() {
         <DashBoardItem
           title={evalAmount}
           subtitle="Total Evaluations"
+          to="/Evaluations"
           icon={
             <QuizIcon
               sx={{ color: colors.blueAccent[500], fontSize: "26px" }}
@@ -66,6 +67,7 @@ export default function Dashboard() {
         <DashBoardItem
           title={activeEvalAmount}
           subtitle="Active Evaluations"
+          to="/Actives"
           icon={
             <TimelapseIcon
               sx={{ color: colors.blueAccent[500], fontSize: "26px" }}
