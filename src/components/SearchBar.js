@@ -28,12 +28,10 @@ export default function SearchBar({ options, setSelected }) {
     return options.filter((option) => {
       if (option === null || inputValue === null) {
         return "";
-      }
-      else {
+      } else {
         if (inputValue.length < 2) return "";
         return option.toLowerCase().includes(inputValue.toLowerCase());
       }
-      
     });
   };
 
@@ -45,11 +43,13 @@ export default function SearchBar({ options, setSelected }) {
       borderRadius={1}
     >
       <Autocomplete
-        sx={{"&& .MuiInputBase-root":{
+        sx={{
+          "&& .MuiInputBase-root": {
             padding: 0.1,
             paddingTop: 0.2,
             paddingLeft: 0.5,
-        }}}
+          },
+        }}
         value={searchValue}
         onChange={(event, value) => setSearchValue(value)}
         inputValue={searchValue}

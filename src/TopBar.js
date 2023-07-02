@@ -8,31 +8,38 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import { fetchAllEvaluations } from "./Fetchs";
 
 import { useLocation } from "react-router-dom";
 import { matchPath } from "react-router";
 import SearchBar from "./components/SearchBar";
 import SideBar from "./SideBar";
 
-const Topbar = ({ groups, setSelectedGroup }) => {
+const Topbar = ({ groups, setSelectedGroup, setSelectedEvaluation }) => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   const [options, setOptions] = useState([]);
-  
 
   const location = useLocation();
   const groupRoute = matchPath(location.pathname, "/Groups");
+  const evaluationsRoute = matchPath(location.pathname, "/Evaluations");
+  const activeEvaluationsRoute = matchPath(location.pathname, "/Actives");
 
   useEffect(() => {
-    if(groupRoute){
-        console.log("groups:", groups);
-        const groupNames = groups.map((group) => group.name);
-        console.log("groupNames:", groupNames);
-        setOptions(groupNames);
+    if (groupRoute) {
+      const groupNames = groups.map((group) => group.name);
+      setOptions(groupNames);
     }
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [groups]);
+    if (evaluationsRoute) {
+      console.log("Evals.", groupRoute);
+      fetchAllEvaluations().then((evals) => {
+        const evalNames = evals.map((item) => item.name);
+        setOptions(evalNames);
+      });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   const [state, setState] = React.useState({
     top: false,
@@ -65,8 +72,15 @@ const Topbar = ({ groups, setSelectedGroup }) => {
           </IconButton>
         )}
 
-        {groupRoute && <SearchBar options={options} setSelected={setSelectedGroup}/>}
-        
+        {groupRoute && (
+          <SearchBar options={options} setSelected={setSelectedGroup} />
+        )}
+        {evaluationsRoute && (
+          <SearchBar options={options} setSelected={setSelectedEvaluation} />
+        )}
+        {activeEvaluationsRoute && (
+          <SearchBar options={options} setSelected={setSelectedGroup} />
+        )}
       </Box>
 
       <SideBar state={state} toggleDrawer={toggleDrawer} />

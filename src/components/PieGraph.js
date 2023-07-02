@@ -13,6 +13,8 @@ export default function PieGraph({ data }) {
   const labelMappings = {
     completed: "Completadas",
     not_completed: "Empezadas",
+    started: "Iniciadas",
+    not_started: "No Iniciadas",
   };
 
   const chartData = Object.entries(data).map(([label, value]) => ({
@@ -23,6 +25,8 @@ export default function PieGraph({ data }) {
   const colorScheme = {
     Completadas: colors.blueAccent[700],
     Empezadas: colors.redAccent[400],
+    Iniciadas: colors.blueAccent[700],
+    "No Iniciadas": colors.redAccent[400],
   };
 
   const EmptyTooltip = () => null;

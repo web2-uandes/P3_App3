@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { fetchGroups } from "../Fetchs";
 
 export default function Groups({ groups, setGroups, selectedGroup }) {
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -16,6 +15,6 @@ export default function Groups({ groups, setGroups, selectedGroup }) {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   return <div>{selectedGroup}</div>;
 }

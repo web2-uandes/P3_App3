@@ -12,6 +12,7 @@ function App() {
   const [theme, colorMode] = useMode();
   const [groups, setGroups] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState("");
+  const [selectedEvaluation, setSelectedEvaluation] = useState("");
 
   return (
     <div className="app">
@@ -20,10 +21,19 @@ function App() {
           <CssBaseline />
           <div style={{ height: "100%", width: "100%" }}>
             <main>
-              <Topbar groups={groups} setSelectedGroup={setSelectedGroup} />
+              <Topbar
+                groups={groups}
+                setSelectedGroup={setSelectedGroup}
+                setSelectedEvaluation={setSelectedEvaluation}
+              />
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/Evaluations" element={<Evaluations />} />
+                <Route
+                  path="/Evaluations"
+                  element={
+                    <Evaluations selectedEvaluation={selectedEvaluation} />
+                  }
+                />
                 <Route path="/Actives" element={<ActiveEvaluations />} />
                 <Route
                   path="/Groups"
