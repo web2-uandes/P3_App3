@@ -13,6 +13,7 @@ function App() {
   const [groups, setGroups] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState("");
   const [selectedEvaluation, setSelectedEvaluation] = useState("");
+  const [selectedActiveEvaluation, setSelectedActiveEvaluation] = useState("");
 
   return (
     <div className="app">
@@ -25,6 +26,7 @@ function App() {
                 groups={groups}
                 setSelectedGroup={setSelectedGroup}
                 setSelectedEvaluation={setSelectedEvaluation}
+                setSelectedActiveEvaluation={setSelectedActiveEvaluation}
               />
               <Routes>
                 <Route path="/" element={<Dashboard />} />
@@ -34,7 +36,14 @@ function App() {
                     <Evaluations selectedEvaluation={selectedEvaluation} />
                   }
                 />
-                <Route path="/Actives" element={<ActiveEvaluations />} />
+                <Route
+                  path="/Actives"
+                  element={
+                    <ActiveEvaluations
+                      selectedActiveEvaluation={selectedActiveEvaluation}
+                    />
+                  }
+                />
                 <Route
                   path="/Groups"
                   element={

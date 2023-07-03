@@ -48,8 +48,8 @@ export default function ResultsBarChart({ title, data, xLabel, yLabel }) {
           colors={[
             colors.greenAccent[400], // Specify the color for the "correct" layer
             colors.redAccent[400], // Specify the color for the "wrong" layer
-            colors.grey[100], // Specify the color for the "in_progress" layer
-            colors.blueAccent[400], // Specify the color for the "not_started" layer
+            colors.blueAccent[100], // Specify the color for the "in_progress" layer
+            colors.grey[400], // Specify the color for the "not_started" layer
           ]}
           enableLabel={false}
           theme={customTheme}
