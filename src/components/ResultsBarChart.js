@@ -9,7 +9,7 @@ export default function ResultsBarChart({ title, data, xLabel, yLabel }) {
   const colors = tokens(theme.palette.mode);
 
   const chartData = data.map((obj, index) => ({
-    id: `layer-${index}`,
+    id: index + 1,
     ...obj,
   }));
 

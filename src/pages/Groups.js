@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { fetchGroups } from "../Fetchs";
 
-export default function Groups({ groups, setGroups, selectedGroup }) {
+export default function Groups({ setGroups, selectedGroup }) {
   useEffect(() => {
     const fetchData = async () => {
       try {

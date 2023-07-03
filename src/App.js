@@ -6,7 +6,6 @@ import { Routes, Route } from "react-router-dom";
 import Evaluations from "./pages/Evaluations";
 import Groups from "./pages/Groups";
 import Dashboard from "./pages/Dashboard";
-import ActiveEvaluations from "./pages/ActiveEvaluations";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -39,8 +38,8 @@ function App() {
                 <Route
                   path="/Actives"
                   element={
-                    <ActiveEvaluations
-                      selectedActiveEvaluation={selectedActiveEvaluation}
+                    <Evaluations
+                      selectedEvaluation={selectedActiveEvaluation}
                     />
                   }
                 />
