@@ -29,11 +29,8 @@ export function fetchEvaluations() {
 }
 
 export async function fetchAllEvaluations() {
-  const params = new URLSearchParams({
-    number_result: false,
-  });
   return new Promise((resolve, reject) => {
-    fetch(`${API_URL}/evaluations/?${params}`, {
+    fetch(`${API_URL}/evaluations/`, {
       method: "GET",
       headers: {
         // 'Authorization': `Bearer ${localStorage.getItem('token_access')}`,
@@ -89,7 +86,6 @@ export async function fetchEvaluationParticipation(evaluationId) {
 export async function fetchEvaluationResults(evaluationId) {
   const params = new URLSearchParams({
     option: "results",
-    sort: "worst",
   });
   return new Promise((resolve, reject) => {
     fetch(`${API_URL}/evaluations/${evaluationId}/?${params}`, {
@@ -111,6 +107,35 @@ export async function fetchEvaluationResults(evaluationId) {
       })
       .catch((error) => {
         console.log("Evaluations Error: ", error);
+        reject(error);
+      });
+  });
+}
+
+export async function fetchGroupResults(groupId) {
+  const params = new URLSearchParams({
+    option: "results",
+  });
+  return new Promise((resolve, reject) => {
+    fetch(`${API_URL}/groups/${groupId}/?${params}`, {
+      method: "GET",
+      headers: {
+        // 'Authorization': `Bearer ${localStorage.getItem('token_access')}`,
+        // 'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch group results.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Group results: ", data);
+        resolve(data);
+      })
+      .catch((error) => {
+        console.log("Group results Error: ", error);
         reject(error);
       });
   });

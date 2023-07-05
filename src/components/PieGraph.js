@@ -11,10 +11,17 @@ export default function PieGraph({ data }) {
   }
 
   const labelMappings = {
+    // Evaluacion
     completed: "Completadas",
     not_completed: "Empezadas",
     started: "Iniciadas",
     not_started: "No Iniciadas",
+
+    // Grupo
+    correct_answers: "Correctas",
+    wrong_answers: "Incorrectas",
+    not_answered: "No respondidas",
+    in_progress: "En Progreso",
   };
 
   const chartData = Object.entries(data).map(([label, value]) => ({
@@ -23,22 +30,38 @@ export default function PieGraph({ data }) {
   }));
 
   const colorScheme = {
+    // Evaluaciones
     Completadas: colors.blueAccent[700],
     Empezadas: colors.redAccent[400],
     Iniciadas: colors.blueAccent[700],
     "No Iniciadas": colors.redAccent[400],
+
+    // Grupo
+    Correctas: colors.greenAccent[400],
+    Incorrectas: colors.redAccent[400],
+    "No respondidas": colors.grey[400],
+    "En Progreso": colors.blueAccent[700],
   };
 
   const EmptyTooltip = () => null;
 
   return (
     <>
-      <div style={{ height: "300px", width: "300px" }}>
+      <div
+        style={{
+          height: "20vw",
+          width: "20vw",
+          minHeight: "300px",
+          minWidth: "300px",
+        }}
+      >
         <ResponsivePie
           data={chartData}
           //   margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
           enableSlicesLabels={false}
-          arcLabel={(d) => `${d.id}: ${d.value}`}
+          arcLabel={(slice) =>
+            slice.value === 0 ? "" : `${slice.id}: ${slice.value}`
+          }
           theme={{
             fontSize: "14px",
             textColor: colors.primary[400],

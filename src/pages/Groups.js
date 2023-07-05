@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { fetchGroups } from "../Fetchs";
+import { fetchGroupResults, fetchGroups } from "../Fetchs";
 import Header from "../components/Header";
+import PieGraph from "../components/PieGraph";
 
 export default function Groups({ selectedGroup }) {
   const [groups, setGroups] = useState([]);
   const [groupId, setGroupId] = useState("");
+
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +47,8 @@ export default function Groups({ selectedGroup }) {
 
     const fetchData = async () => {
       try {
+        const res = await fetchGroupResults(groupId);
+        setResults(res);
       } catch {
         console.log("Failed to fetch.");
       }
@@ -57,8 +62,25 @@ export default function Groups({ selectedGroup }) {
         <>
           <Header title={selectedGroup} />
           <div
-            style={{ display: "flex", justifyContent: "space-around" }}
-          ></div>
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+          >
+            {results.map((evaluation) => (
+              <div key={evaluation.name}>
+                <Header subtitle={evaluation.name} />
+                <PieGraph
+                  data={{
+                    wrong_answers: evaluation.wrong_answers,
+                    correct_answers: evaluation.correct_answers,
+                    in_progress: evaluation.in_progress,
+                    not_answered: evaluation.not_answered,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </>
       )}
     </>

@@ -11,10 +11,12 @@ export default function BarGraph({ title, data, xLabel, yLabel }) {
   let chartData = [];
 
   if (data && typeof data === "object") {
-    chartData = Object.entries(data).map(([label, value]) => ({
-      label,
-      value,
-    }));
+    chartData = Object.entries(data)
+      .map(([label, value]) => ({
+        label,
+        value,
+      }))
+      .sort((a, b) => new Date(a.label) - new Date(b.label));
   }
 
   const customTheme = {

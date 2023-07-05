@@ -36,8 +36,7 @@ export default function Dashboard() {
         const day = await fetchDailyEvaluations();
         const done = await fetchDoneVsStarted();
 
-        //   setEvaluations(evals);
-        setEvalAmount(evals);
+        setEvalAmount(evals.length);
         setActiveEvalAmount(actives.length);
         setMonthly(month);
         setDaily(day);
