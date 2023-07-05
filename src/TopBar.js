@@ -8,7 +8,11 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import { fetchActiveEvaluations, fetchAllEvaluations } from "./Fetchs";
+import {
+  fetchActiveEvaluations,
+  fetchAllEvaluations,
+  fetchGroups,
+} from "./Fetchs";
 
 import { useLocation } from "react-router-dom";
 import { matchPath } from "react-router";
@@ -32,8 +36,10 @@ const Topbar = ({
 
   useEffect(() => {
     if (groupRoute) {
-      const groupNames = groups.map((group) => group.name);
-      setOptions(groupNames);
+      fetchGroups().then((groups) => {
+        const groupNames = groups.map((group) => group.name);
+        setOptions(groupNames);
+      });
     }
     if (evaluationsRoute) {
       fetchAllEvaluations().then((evals) => {

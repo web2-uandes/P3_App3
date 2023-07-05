@@ -33,15 +33,15 @@ export default function PieGraph({ data }) {
 
   return (
     <>
-      <div style={{ height: "300px" }}>
+      <div style={{ height: "300px", width: "300px" }}>
         <ResponsivePie
           data={chartData}
-          margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+          //   margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
           enableSlicesLabels={false}
-          radialLabel={(d) => `${d.id}: ${d.value}`}
+          arcLabel={(d) => `${d.id}: ${d.value}`}
           theme={{
             fontSize: "14px",
-            textColor: colors.primary[200],
+            textColor: colors.primary[400],
           }}
           colors={({ id }) => colorScheme[id]}
           tooltip={EmptyTooltip}

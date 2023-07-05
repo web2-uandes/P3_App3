@@ -36,14 +36,14 @@ export default function ResultsBarChart({ title, data, xLabel, yLabel }) {
   const EmptyTooltip = () => null;
 
   return (
-    <div style={{ height: "400px" }}>
+    <div style={{ height: "450px", width: "360px" }}>
       <Header title={title} />
       {chartData.length > 0 ? (
         <ResponsiveBar
           data={chartData}
           keys={["correct", "wrong", "in_progress", "not_started"]}
           indexBy="id"
-          margin={{ top: 10, right: 50, bottom: 100, left: 75 }}
+          margin={{ top: 10, right: 10, bottom: 100, left: 75 }}
           padding={0.3}
           colors={[
             colors.greenAccent[400], // Specify the color for the "correct" layer
